@@ -1,4 +1,5 @@
 const Recipe = require('../models/Recipe');
+const User = require('../models/User');
 
 const index = ( req, res ) => {
 
@@ -20,11 +21,12 @@ const index = ( req, res ) => {
 
 // presentational
 const addRecipeForm = ( req, res ) => {
-    res.render('post/new');
+    res.render('recipe/new');
   }
   
 const newRecipe = ( req, res ) => {
-    const userId = req.session.currentUser.userId;
+    console.log(req.session);
+    const userId = req.session.passport.user;
   
     Recipe.create( req.body, ( err, createdRecipe ) => {
       if ( err ) return console.log(err)
@@ -34,7 +36,7 @@ const newRecipe = ( req, res ) => {
         createdRecipe.user = foundUser._id;
         createdRecipe.save();
   
-        foundUser.recipes.push(createdPost._id);
+        foundUser.recipes.push(createdRecipe._id);
         foundUser.save();
   
         res.redirect('/users');
