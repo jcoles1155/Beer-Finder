@@ -11,24 +11,6 @@
     <h2>Welcome Please Log In With Google</h2>
   </header>
 
-  <section class="main__posts">
-    <nav>
-      <a href="#">Recipes</a>
-    </nav>
-
-    <section class="recipe_list">
-
-      <% if ( user.recipes.length === 0 ) { %>
-       <!-- you have no post yet -->
-      <% } %>
-      
-      <% user.recipes.forEach( recipe => { %>
-        <div class="post"><%= recipe.caption %> 
-        </div>
-      <% }) %>
-
-    </section>
-
-  </section>
+  
 </body>
 </html>

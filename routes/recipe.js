@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const ctrls = require('../controllers');
-const authRequired = require('../middleware/authRequired');
+const recipeCtrl = require('../controllers/recipes');
+// const authRequired = require('../middleware/authRequired');
 
 
-router.get( '/', authRequired, ctrls.recipe.index );
-router.get('/addrecipe', authRequired, ctrls.recipe.addRecipeForm );
-router.post('/newrecipe', ctrls.recipe.newRecipe );
+router.get( '/', isLoggedIn, recipeCtrl.index );
+router.get('/addrecipe', isLoggedIn, recipeCtrl.addRecipeForm );
+router.post('/newrecipe', isLoggedIn, recipeCtrl.newRecipe );
 
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/auth/google');
+  }
 
 module.exports = router;

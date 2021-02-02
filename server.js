@@ -30,6 +30,7 @@ const logger = require('morgan');
 const routes = require('./routes');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const recipeRouter = require('./routes/recipe');
 
 
 /*  MIDDLEWARE  */
@@ -63,6 +64,7 @@ app.use(passport.session());
 /*  ROUTES  */
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/recipe', recipeRouter);
 
 
 /*  LISTEN  */

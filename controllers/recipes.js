@@ -18,6 +18,32 @@ const index = ( req, res ) => {
     })
 }
 
+// presentational
+const addRecipeForm = ( req, res ) => {
+    res.render('post/new');
+  }
+  
+const newRecipe = ( req, res ) => {
+    const userId = req.session.currentUser.userId;
+  
+    Recipe.create( req.body, ( err, createdRecipe ) => {
+      if ( err ) return console.log(err)
+  
+      User.findById( userId, ( err, foundUser ) => {
+  
+        createdRecipe.user = foundUser._id;
+        createdRecipe.save();
+  
+        foundUser.recipes.push(createdPost._id);
+        foundUser.save();
+  
+        res.redirect('/users');
+      });
+    });
+  }
+
 module.exports = {
     index,
+    addRecipeForm,
+    newRecipe
 }
