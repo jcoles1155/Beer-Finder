@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>SEIR-Flex Student Fun Facts</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
-    <!-- Materialize Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Materialize CSS Framework -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/css/style.css" />
-    <!-- JavaScript for Materialize -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </head>
+  <%- include('../partials/_head/_head') %>
 
   <body>
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper purple">
-          <a href="" class="brand-logo left">Beer Finder</a>
-          <ul class="right">
-            <li><a href="/">Home</a></li>
-            <!-- Place Login UI Here -->
-              <li>
-              <% if (user) { %>
-                <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
-              <% } else { %>
-                <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
-              <% } %>
-              </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    
+  <%- include('../partials/_mainNav/_navBar') %>
+
+    <!--  Place remaining index content for users here  -->
   </body>
+
+  <header class="container">
+    <h2>Welcome New User</h2>
+  </header>
+
+  <%- include('../recipe/new') %>
+
+  <section class="main__posts">
+    <nav>
+      <a href="#">Recipes</a>
+    </nav>
+
+    <section class="recipe_list">
+
+      <% if ( user.recipes.length === 0 ) { %>
+       <!-- you have no post yet -->
+      <% } %>
+      
+      <% user.recipes.forEach( recipe => { %>
+        <div class="post"><%= recipe.caption %> 
+        </div>
+      <% }) %>
+
+    </section>
+
+  </section>
+
 </html>

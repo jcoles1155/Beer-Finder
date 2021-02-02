@@ -4,7 +4,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const User = require('../models/User');
 
-console.log(process.env.GOOGLE_CLIENT_ID)
+// console.log(process.env.GOOGLE_CLIENT_ID)
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -13,6 +13,7 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOne({ 'googleId': profile.id }, function(err, user) {
+      console.log(profile);
         if (err) return cb(err);
         if (user) {
           return cb(null, user);
@@ -21,7 +22,13 @@ passport.use(new GoogleStrategy({
           const newUser = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
-            googleId: profile.id
+            googleId: profile.id,
+            photo: profile._json.picture,
+            recipes: [{
+              type: mongoose.Types.ObjectId,
+              ref: 'Post'
+            }],
+
           });
           newUser.save(function(err) {
             if (err) return cb(err);
