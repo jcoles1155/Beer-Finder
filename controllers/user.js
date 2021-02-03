@@ -18,13 +18,13 @@ const show = ( req, res ) => {
   console.log(req.body);
   const userId = req.session.passport.user;
   
-  User.findById(userId).populate('recipe').exec(function(err, user) {
+  User.findById(userId).populate('recipe').exec(function(err, foundUser) {
     if (err) return console.log(err)
+    console.log(foundUser)
     res.render('users/show', {
-      user
+      foundUser: foundUser,
     })
   })
- 
 };
 
 

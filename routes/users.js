@@ -10,6 +10,7 @@ router.get('/', isLoggedIn, usersCtrl.index);
 router.post('/', isLoggedIn, recipesCtrl.newRecipe);
 router.get('/', usersCtrl.show);
 
+
 // DELETE /recipe/:id
 // router.delete('/recipe/:id', isLoggedIn, usersCtrl.delRecipe);
 

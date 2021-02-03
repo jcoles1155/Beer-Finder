@@ -1,12 +1,13 @@
 <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper purple">
-        <a href="" class="brand-logo left">BEER FINDER</a>
+        <a href="/users" class="brand-logo left">BEER FINDER</a>
         <ul class="right">
           <!-- <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a> -->
     
             <% if (user) { %>
-              <li><a href="/recipe/newrecipe">Create New Recipe</a></li>
+              <li><a href="/recipes">Browse</a></li>
+              <li><a href="/recipes/new">Create New Recipe</a></li>
               <!-- <li><a href="/users">See All Users</a></li> -->
               <li><a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a></li>
             <% } else { %>

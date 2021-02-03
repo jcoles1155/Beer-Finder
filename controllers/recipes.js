@@ -1,7 +1,7 @@
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 
-const index = ( req, res ) => {
+/* const index = ( req, res ) => {
 
     Recipe.find({})
     .populate('user')
@@ -17,11 +17,32 @@ const index = ( req, res ) => {
 
       res.render('recipeList/recipeList', context );
     })
+} */
+
+// presentational for browsing
+
+function index(req, res, next) {
+  User.find({}, function(err, users) {
+    res.render('recipes', { 
+      users,
+      user: req.user,
+      recipe: req.user.recipes,
+     });
+  });
 }
 
-// presentational
+// presentational for new recipe
 
-  
+function newRecipeIndex(req, res, next) {
+  User.find({}, function(err, users) {
+    res.render('recipes/new', { 
+      users,
+      user: req.user,
+      recipe: req.user.recipes,
+     });
+  });
+}
+
 const newRecipe = ( req, res ) => {
     console.log(req.body);
     const userId = req.session.passport.user;
@@ -45,7 +66,7 @@ const newRecipe = ( req, res ) => {
         console.log(foundUser);
         // console.log('type:', typeof foundRecipesList);
 
-        return res.render( 'recipeList/recipeList', { recipes: foundUser } );
+        return res.render( 'users', { recipes: foundUser } );
       });
       console.log(req.body);
       /* req.user.recipes.save().then(recipe => {
@@ -54,6 +75,19 @@ const newRecipe = ( req, res ) => {
     });
     console.log(req.user.recipes);
   }
+
+function addRecipeForm(req, res, next) {
+  User.find({}, function(err, users) {
+    res.render('partials/_recipeAddForm/_recipeAddForm', { 
+      users,
+      user: req.user,
+      recipe: req.user.recipes,
+     });
+  });
+}
+
+
+
 
 // needs more work with tosin
 const showList = ( req, res ) => {
@@ -72,9 +106,6 @@ const showList = ( req, res ) => {
     });
 };
 
-const addRecipeForm = ( req, res ) => {
-    res.render('recipe/new');
-}
 
   /* function addRecipe(req, res) {
   req.user.recipe.push(req.body);
@@ -101,4 +132,5 @@ module.exports = {
     addRecipeForm,
     newRecipe,
     showList,
+    newRecipeIndex,
 }
