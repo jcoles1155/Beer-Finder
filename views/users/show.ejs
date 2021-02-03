@@ -6,11 +6,11 @@
   <main class="main">
 
     <div class="container">
-      <% if (recipes.length === 0 ) { %>
+      <% if (user.recipes.length === 0 ) { %>
         <p>no recipes yet</p>
       <% } %> 
       
-      <% recipes.forEach( recipe => { %>
+      <% user.recipes.forEach( recipe => { %>
         <article class="card">
           <!-- card header  -->
           <header class="card__header">
@@ -58,4 +58,3 @@
   
     </div>
   </main>
-

@@ -1,30 +1,30 @@
 const User = require('../models/User');
+const Recipe = require('../models/Recipe')
 
 
 function index(req, res, next) {
   User.find({}, function(err, users) {
     res.render('users/index', { 
       users,
-      user: req.user
+      user: req.user,
+      recipe: req.user.recipes,
      });
   });
 }
 
+
 // needs more work with tosin
 const show = ( req, res ) => {
-  const _id = req.params.userId
+  console.log(req.body);
+  const userId = req.session.passport.user;
   
-  User.findById( _id )
-    .populate('recipes')
-    .exec((err, foundProfile) => {
-      if (err) return res.status(500).json({
-        status: 500,
-        data: foundProfile,
-        error: [{ message: 'Something went wrong. Please try again '}],
-      });
-
-      return res.render( 'users/profile', {user: foundProfile} );
-    });
+  User.findById(userId).populate('recipe').exec(function(err, user) {
+    if (err) return console.log(err)
+    res.render('users/show', {
+      user
+    })
+  })
+ 
 };
 
 

@@ -21,18 +21,8 @@
       <a href="#">Recipes</a>
     </nav>
 
-    <section class="recipe_list">
+  <%- include('../users/show') %>
 
-      <% if ( user.recipes.length === 0 ) { %>
-       <!-- you have no post yet -->
-      <% } %>
-      
-      <% user.recipes.forEach( recipe => { %>
-        <div class="post"><%= recipe.caption %> 
-        </div>
-      <% }) %>
-
-    </section>
 
   </section>
 

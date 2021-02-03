@@ -26,7 +26,7 @@ passport.use(new GoogleStrategy({
             photo: profile._json.picture,
             recipes: [{
               type: mongoose.Types.ObjectId,
-              ref: 'Post'
+              ref: 'Recipe'
             }],
 
           });
