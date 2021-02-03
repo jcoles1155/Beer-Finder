@@ -2,7 +2,8 @@
 
 function index(req, res) {
     res.render('index', {
-        user: req.user
+        user: req.user,
+        recipe: req.recipes,
     });
 }
 

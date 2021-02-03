@@ -7,7 +7,7 @@ const recipesCtrl = require('../controllers/recipes');
 
 router.get('/', isLoggedIn, usersCtrl.index);
 
-router.post('/recipe', isLoggedIn, recipesCtrl.newRecipe);
+router.post('/', isLoggedIn, recipesCtrl.newRecipe);
 router.get('/', usersCtrl.show);
 
 // DELETE /recipe/:id
