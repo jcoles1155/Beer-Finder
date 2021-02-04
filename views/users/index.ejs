@@ -14,16 +14,31 @@
     <h2>Welcome New User</h2>
   </header>
 
- 
+  <%- include('../partials/_carousel/_carousel') %>
 
   <section class="main__posts">
     <nav>
-      <a href="#">Recipes</a>
+      <a href="#">View Your Recipes</a>
     </nav>
 
-    
+      
+      <section class="posts_list">
+
+        <% if ( user.recipes.length === 0 ) { %>
+         <!-- you have no post yet -->
+        <% } %>
+        
+        <% user.recipes.forEach( recipe => { %>
+          <div class="post"><%= recipe.caption %> </div>
+          <div class="post"><%= recipe.caption %> </div>
+        <% }) %>
+
+      </section>
+
+  </section>
 
 
   </section>
 
 </html>
+

@@ -20,8 +20,22 @@
     <nav>
       <a href="#">Browse Recipes</a>
     </nav>
-
-    
+        
+        <section class="posts_list">
+  
+          <% if ( user.recipes.length === 0 ) { %>
+           <!-- you have no post yet -->
+          <% } %>
+          
+          <% user.recipes.forEach( recipe => { %>
+            <div class="post"><%= recipe.caption %> </div>
+            <div class="post"><%= recipe.img %> </div>
+          <% }) %>
+  
+        </section>
+  
+    </section>
+  
 
 
   </section>
