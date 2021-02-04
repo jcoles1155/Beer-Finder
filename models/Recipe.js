@@ -66,14 +66,9 @@ const recipeSchema = new mongoose.Schema({
       type: Number,
       requiured: true
   },
-  grainBill: [{
-      type: mongoose.Types.ObjectId,
-      ref: 'grainBill'
-  }],
-  hopSchedule: [{
-      type: mongoose.Types.ObjectId,
-      ref: 'hopSchedule'
-  }],
+  
+  grainBill: [grainBillSchema],
+  hopSchedule: [hopScheduleSchema],
   otherIngredients: [{
       type: mongoose.Types.ObjectId,
       ref: 'otherIngredients'
@@ -89,18 +84,22 @@ const recipeSchema = new mongoose.Schema({
 });
 
 // EMBEDDED RELATIONSHIP
-const grainBillSchema = new mongoose.Schema({
-    text: String
-  }, {
-    timestamps: true
-  });
+// const grainBillSchema = new mongoose.Schema({
+//     text: String
+//   }, {
+//     timestamps: true
+//   });
 
-const grainBill = mongoose.model('grainBill', grainBillSchema )
+// const hopScheduleSchema = new mongoose.Schema({
+//     text: String
+//   }, {
+//     timestamps: true
+//   });
+
+// const hopSchedule = mongoose.model('grainBill', hopScheduleSchema )
+
+// const grainBill = mongoose.model('grainBill', grainBillSchema )
 
 const Recipe = mongoose.model('Recipe', recipeSchema )
 
-module.exports = {
-    Recipe,
-    grainBill,
-
-};
+module.exports = Recipe;

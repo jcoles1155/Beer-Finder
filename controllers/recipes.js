@@ -1,35 +1,24 @@
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 
-/* const index = ( req, res ) => {
+
+
+const index = ( req, res ) => {
 
     Recipe.find({})
     .populate('user')
     .exec( ( err, recipes ) => {
         if ( err ) return console.log(err)
-
-      console.log(req.session.user)
-
       const context = {
         recipes,
-        currentUser: req.session.user
     }
-
-      res.render('recipeList/recipeList', context );
+      res.render('recipes/index', context );
     })
-} */
+}
 
 // presentational for browsing
 
-function index(req, res, next) {
-  User.find({}, function(err, users) {
-    res.render('recipes', { 
-      users,
-      user: req.user,
-      recipe: req.user.recipes,
-     });
-  });
-}
+
 
 // presentational for new recipe
 
@@ -38,12 +27,12 @@ function newRecipeIndex(req, res, next) {
     res.render('recipes/new', { 
       users,
       user: req.user,
-      recipe: req.user.recipes,
+      recipes: req.user.recipe,
      });
   });
 }
 
-const newRecipe = ( req, res ) => {
+function newRecipe( req, res, next ) {
     console.log(req.body);
     const userId = req.session.passport.user;
 
@@ -66,7 +55,7 @@ const newRecipe = ( req, res ) => {
         console.log(foundUser);
         // console.log('type:', typeof foundRecipesList);
 
-        return res.render( 'users', { recipes: foundUser } );
+        return res.render( 'users', { recipes: foundUser.recipes } );
       });
       console.log(req.body);
       /* req.user.recipes.save().then(recipe => {
@@ -75,6 +64,12 @@ const newRecipe = ( req, res ) => {
     });
     console.log(req.user.recipes);
   }
+
+
+
+
+
+
 
 function addRecipeForm(req, res, next) {
   User.find({}, function(err, users) {
@@ -86,15 +81,15 @@ function addRecipeForm(req, res, next) {
   });
 }
 
-function navBar(req, res, next) {
-  User.find({}, function(err, users) {
-    res.render('partials/_mainNav/_navBar', { 
-      users,
-      user: req.user,
-      recipe: req.user.recipes,
-     });
-  });
-}
+// function navBar(req, res, next) {
+//   User.find({}, function(err, users) {
+//     res.render('partials/_mainNav/_navBar', { 
+//       users,
+//       user: req.user,
+//       recipe: req.user.recipes,
+//      });
+//   });
+// }
 
 
 
@@ -141,6 +136,6 @@ module.exports = {
     index,
     addRecipeForm,
     newRecipe,
-    navBar,
+    // navBar,
     newRecipeIndex,
 }

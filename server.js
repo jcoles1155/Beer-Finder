@@ -41,11 +41,7 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// user authentication middleware
-app.use( ( req, res, next)  => {
-  app.locals.user =  req.user;
-  next();
-});
+
 
 
 
@@ -59,7 +55,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// user authentication middleware
+app.use( ( req, res, next)  => {
+  app.locals.user =  req.user;
+  next();
+});
 
 /*  ROUTES  */
 app.use('/', indexRouter);

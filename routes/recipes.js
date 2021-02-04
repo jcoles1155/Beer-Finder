@@ -9,7 +9,7 @@ router.get( '/', isLoggedIn, recipesCtrl.index );
 // router.get('/addrecipe', isLoggedIn, recipeCtrl.addRecipeForm );
 router.post('/new', isLoggedIn, recipesCtrl.newRecipe );
 router.get( '/new', isLoggedIn, recipesCtrl.newRecipeIndex );
-router.get('/new', isLoggedIn, recipesCtrl.navBar);
+// router.get('/new', isLoggedIn, recipesCtrl.navBar);
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();

@@ -3,11 +3,11 @@ const Recipe = require('../models/Recipe')
 
 
 function index(req, res, next) {
-  User.find({}, function(err, users) {
+  console.log(req.user._id, 'current user');
+  Recipe.find({user: req.user._id}).populate('user').exec( function(err, recipes) {
+    
     res.render('users/index', { 
-      users,
-      user: req.user,
-      recipe: req.user.recipes,
+      recipes,
      });
   });
 }
@@ -15,34 +15,25 @@ function index(req, res, next) {
 
 // needs more work with tosin
 const show = ( req, res ) => {
-  console.log(req.body);
+  console.log(req.user, 'current user');
   const userId = req.session.passport.user;
   
   
   User.findById(userId).populate('recipe').exec(function(err, foundUser) {
     if (err) return console.log(err)
-    console.log(foundUser)
+    
     res.render('partials/_showRecipes/_showRecipes', {
-      foundUser: foundUser,
+      foundUser,
       userId,
     })
   })
 };
 
-function navBar(req, res, next) {
-  User.find({}, function(err, users) {
-    res.render('partials/_mainNav/_navBar', { 
-      users,
-      user: req.user,
-      recipe: req.user.recipes,
-     });
-  });
-}
+
 
 
 module.exports = {
   index,
   show,
-  navBar,
 };
 
