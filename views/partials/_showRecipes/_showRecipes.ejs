@@ -1,15 +1,10 @@
-<header class="container">
-    <h2>Recipe List</h2>
-  </header>
-
-  <main class="main">
 
     <div class="container">
-      <% if (foundUser.recipes.length === 0 ) { %>
+      <% if (user.recipes.length === 0 ) { %>
         <p>no recipes yet</p>
       <% } %> 
       
-      <% foundUser.recipes.forEach( recipe => { %>
+      <% user.recipes.forEach( recipe => { %>
         <article class="card">
           <!-- card header  -->
           <header class="card__header">
@@ -56,4 +51,3 @@
       <% }) %>
   
     </div>
-  </main>

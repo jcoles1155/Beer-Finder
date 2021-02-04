@@ -88,7 +88,19 @@ const recipeSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// EMBEDDED RELATIONSHIP
+const grainBillSchema = new mongoose.Schema({
+    text: String
+  }, {
+    timestamps: true
+  });
+
+const grainBill = mongoose.model('grainBill', grainBillSchema )
 
 const Recipe = mongoose.model('Recipe', recipeSchema )
 
-module.exports = Recipe;
+module.exports = {
+    Recipe,
+    grainBill,
+
+};

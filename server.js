@@ -41,12 +41,12 @@ app.use(methodOverride('_method'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-/* // user authentication middleware
+// user authentication middleware
 app.use( ( req, res, next)  => {
-  app.locals.user =  req.session.user;
+  app.locals.user =  req.user;
   next();
 });
- */
+
 
 
 /*  PASSPORT SETUP  */
