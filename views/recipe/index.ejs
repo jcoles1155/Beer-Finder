@@ -15,22 +15,24 @@
   <header class="container">
     <h2><p> <%= foundRecipe.recipeName %></p></h2>
   </header>
-  
+          <div class="recipe__image">
+                    <img src="<%= foundRecipe.img %> " alt="">
+          </div>
     <div class="container">
 
        <div class="recipe">
             <div class="row recipe__stats">
-                <div class="recipe__image">
-                    <img src="<%= foundRecipe.img %> " alt="">
-                </div>
+                
                 <div class="container">
                     <h2>BEER STATS</h2>
                     <h2><%= foundRecipe.recipeName %></h2>
+                <label>Style:</label>
                 <p> <%= foundRecipe.style %></p>
                 <label>Gallons</label>
                 <p> <%= foundRecipe.batchSize %></p>
+                <label>Alcohol Percentage:</label>
                 <p> <%= foundRecipe.ABV %></p>
-
+                <label>SRM (Color of beer):</label>
                 <p> <%= foundRecipe.SRM %></p>
                 <label>All Grain or Extract:</label>
                 <p> <%= foundRecipe.method %></p>
@@ -59,7 +61,10 @@
   </div>
 
   <div>
-    <a href="/users" action="DELETE">DELETE POST</a>
+    <form action="/recipes/<%= foundRecipe._id %>?_method=DELETE" method="POST">
+      <input type="submit" value="deleteRecipe">
+    </form>
+    
   </div>
 </html>
 

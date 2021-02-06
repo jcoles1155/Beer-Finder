@@ -40,7 +40,7 @@ function newRecipe( req, res, next ) {
       img: req.body.img,
       caption: req.body.caption,
       user: userId,
-      name: req.body.recipeName,
+      recipeName: req.body.recipeName,
       style: req.body.style,
       method: req.body.method,
       batchSize: req.body.batchSize,
@@ -97,28 +97,22 @@ function addRecipeForm(req, res, next) {
   });
 }
 
-// // work with adonis
-// function delete( req, res, next ) {
+// work with adonis
+function deleteRecipe( req, res, next ) {
     
-//   // console.log(req.user, 'current user');
-//   const userId = req.session.passport.user;
-//   Recipe.findById(req.params.id, function(err, foundRecipe){
-//     if (err) return console.log(err)
-//     console.log(foundRecipe);
-//     foundRecipe.remove({ _id: req.body.id }, function(err) {
-//       if (err) return console.log(err)
-//     })
-//     Recipe.find({})
-//     .populate('user')
-//     .exec( ( err, recipes ) => {
-//         if ( err ) return console.log(err)
-//       const context = {
-//         recipes,
-//     }
-//       res.render('/users', context );
-//     })
-//   })
-// };
+  // console.log(req.user, 'current user');
+  // const userId = req.session.passport.user;
+  Recipe.findByIdAndDelete(req.params.id, function(err, foundRecipe){
+    if (err) return console.log(err)
+    console.log(foundRecipe);
+    User.findById(foundRecipe.user, function(err, foundUser) {
+      if (err) return console.log(err)
+      foundUser.recipes.remove(foundRecipe)
+      foundUser.save()
+      res.redirect('/users')
+    })
+  })
+};
 
 // function navBar(req, res, next) {
 //   User.find({}, function(err, users) {
@@ -177,4 +171,5 @@ module.exports = {
     newRecipe,
     show,
     newRecipeIndex,
+    deleteRecipe,
 }
