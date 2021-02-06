@@ -8,9 +8,10 @@ const recipesCtrl = require('../controllers/recipes');
 router.get( '/', isLoggedIn, recipesCtrl.index );
 router.post('/new', isLoggedIn, recipesCtrl.newRecipe );
 router.get( '/new', isLoggedIn, recipesCtrl.newRecipeIndex );
-router.get( '/:id', isLoggedIn, recipesCtrl.show)
-// router.post( '/:id/edit', isLoggedIn, recipesCtrl.edit)
-router.delete( '/:id', isLoggedIn, recipesCtrl.deleteRecipe)
+router.get( '/:id', isLoggedIn, recipesCtrl.show);
+router.get( '/:id/edit', isLoggedIn, recipesCtrl.editRecipeIndex)
+// router.post( '/:id/edit', isLoggedIn, recipesCtrl.editRecipe);
+router.delete( '/:id', isLoggedIn, recipesCtrl.deleteRecipe);
 
 
 function isLoggedIn(req, res, next) {

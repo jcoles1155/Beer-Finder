@@ -114,6 +114,20 @@ function deleteRecipe( req, res, next ) {
   })
 };
 
+// EDIT RECIPE PRESENTATIONAL
+
+function editRecipeIndex(req, res, next) {
+  const userId = req.session.passport.user;
+    Recipe.findById(req.params.id, function(err, foundRecipe){
+      if (err) return console.log(err)
+      console.log(foundRecipe);
+      res.render(`recipe/edit`, {
+        foundRecipe,
+        userId,
+      })
+    })
+}
+
 // function navBar(req, res, next) {
 //   User.find({}, function(err, users) {
 //     res.render('partials/_mainNav/_navBar', { 
@@ -172,4 +186,5 @@ module.exports = {
     show,
     newRecipeIndex,
     deleteRecipe,
+    editRecipeIndex,
 }

@@ -83,8 +83,8 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px;
-  font-size: 25px;
+  padding: 15px;
+  font-size: 12px;
   border-bottom: 1px solid var(--primary-grey);
 }
 
@@ -152,7 +152,7 @@ header {
   padding: 15px;
   justify-content: flex-start;
   align-items: center;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .card__add__comment {

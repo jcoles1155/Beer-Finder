@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+
+  <%- include('../partials/_head/_head') %>
+
+  <body>
+    
+  <%- include('../partials/_mainNav/_navBar') %>
+
+    <!--  Place remaining index content for users here  -->
+  </body>
+
+<div class="row">
+    <h2 class="left">Edit Recipe</h2>
+  </div>
+  
+  <form action="/users" method="post">
+    
+    <div class="form-row">
+      <div class="col">
+        <label>Name:</label><p> <%= foundRecipe.recipeName %></p>
+        <input type="text" name="recipeName" class="form-control" placeholder="Recipe Name">
+      </div>
+      <div class="col">
+        <label>Style:</label><p> <%= foundRecipe.style %></p>
+        <input type="text" name="style" class="form-control" placeholder="Style">
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="col">
+        <label>img:</label><p> <%= foundRecipe.img %></p>
+        <input type="text" class="form-control" name="img" placeholder="Image">
+      </div>
+      <div class="col">
+        <label>Caption:</label><p> <%= foundRecipe.caption %></p>
+        <input type="text" class="form-control" name="caption" placeholder="Caption">
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="col">
+        <!-- <label>Method:</label>
+        <select name="method">
+          <option value="All Grain">All Grain</option>
+          <option value="Extract">Extract</option>
+        </select> -->
+        <div class="col">
+            <label>Method:</label><p> <%= foundRecipe.method %></p>
+          <input type="text" class="form-control" name="method" placeholder="Method">
+        </div>
+      </div>
+      <div class="col">
+        <label>Batch Size:</label><p> <%= foundRecipe.batchSize %></p>
+        <input type="text" class="form-control" name="batchSize" placeholder="Batch Size">
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="col">
+        <label>ABV:</label><p> <%= foundRecipe.ABV %></p>
+        <input type="text" class="form-control" name="ABV" placeholder="ABV">
+      </div>
+      <div class="col">
+        <label>SRM:</label><p> <%= foundRecipe.SRM %></p>
+        <input type="text" class="form-control" name="SRM" placeholder="SRM">
+      </div>
+      <div class="col">
+        <label>Yeast:</label><p> <%= foundRecipe.yeast %></p>
+        <input type="text" class="form-control" name="yeast" placeholder="Yeast">
+      </div>
+    </div>
+  
+    <input type="submit" value="SAVE RECIPE">
+  </form>
+
+</html>
