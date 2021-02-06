@@ -10,7 +10,7 @@ const passport = require('passport');
 console.log('checking', process.env);
 
 /*  PORT  */
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 
 

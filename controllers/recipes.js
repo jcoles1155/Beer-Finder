@@ -128,6 +128,39 @@ function editRecipeIndex(req, res, next) {
     })
 }
 
+function editRecipe(req, res, next) {
+  const userId = req.session.passport.user;
+
+  const newRecipe = {
+    img: req.body.img,
+    caption: req.body.caption,
+    user: userId,
+    recipeName: req.body.recipeName,
+    style: req.body.style,
+    method: req.body.method,
+    batchSize: req.body.batchSize,
+    ABV: req.body.ABV,
+    SRM: req.body.SRM,
+    yeast: req.body.yeast,
+  }; console.log('editRecipe')
+  console.log(req.params.id)
+  const id = mongoose.Types.ObjectId(req.params.id);
+  Recipe.findByIdAndUpdate(id, newRecipe,
+    res.render(`recipe/index`, {
+          foundRecipe,
+          userId,
+    }));
+  // Recipe.findById(req.params.id, function(err, foundRecipe){
+  //   if (err) return console.log(err)
+  //   console.log(foundRecipe);
+  //   foundRecipe.updateOne(newRecipe, 
+  //     res.render(`recipe/index`, {
+  //     foundRecipe,
+  //     userId,
+  //   }));
+    
+};
+
 // function navBar(req, res, next) {
 //   User.find({}, function(err, users) {
 //     res.render('partials/_mainNav/_navBar', { 
@@ -187,4 +220,5 @@ module.exports = {
     newRecipeIndex,
     deleteRecipe,
     editRecipeIndex,
+    editRecipe,
 }
