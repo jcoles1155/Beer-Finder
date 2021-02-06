@@ -8,6 +8,7 @@ function index(req, res, next) {
     
     res.render('users/index', { 
       recipes,
+      user: req.user,
      });
   });
 }
