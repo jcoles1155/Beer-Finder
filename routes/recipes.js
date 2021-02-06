@@ -2,14 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const recipesCtrl = require('../controllers/recipes');
-// const authRequired = require('../middleware/authRequired');
+
 
 
 router.get( '/', isLoggedIn, recipesCtrl.index );
-// router.get('/addrecipe', isLoggedIn, recipeCtrl.addRecipeForm );
 router.post('/new', isLoggedIn, recipesCtrl.newRecipe );
 router.get( '/new', isLoggedIn, recipesCtrl.newRecipeIndex );
-// router.get('/new', isLoggedIn, recipesCtrl.navBar);
+router.get( '/:id', isLoggedIn, recipesCtrl.show)
+// router.post( '/:id/edit', isLoggedIn, recipesCtrl.edit)
+// router.delete( '/:id', isLoggedIn, recipesCtrl.delete)
+
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();

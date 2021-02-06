@@ -1,11 +1,14 @@
 
-    <div class="container">
+  <div class="container">
+
       <% if (recipes.length === 0 ) { %>
         <p>no recipes yet</p>
       <% } %> 
       
       <% recipes.forEach( recipe => { %>
+        
         <article class="card">
+
           <!-- card header  -->
           <header class="card__header">
             
@@ -16,26 +19,36 @@
           <section class="card__body">
             <img src="<%= recipe.img %> " alt="">
           </section>
+          <section>
+            <a href="/recipes/<%= recipe._id %>">VIEW DETAILS</a>
+          </section>
 
           <!-- card footer -->
           <section class="card__footer">
             
             <div class="card__footer__reactions">
+
               <div class="card__footer__icons">
-                 <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
                 <i class="far fa-comment"></i>
                 <i class="far fa-paper-plane"></i>
               </div>
+
             </div>
             
-            <div class="card__footer__user--info">
-              <p>liked by ... and others</p>
-            </div>
-            <div class="card__footer__user--info">
-              <p> <%= recipe.caption %></p>
-            </div>
+            <div class="card__footer__description">
 
+                <div class="card__footer__caption">
+                
+              </div>
+              <div class="card__footer__caption">
+                <p> <%= recipe.caption %></p>
+              </div>
+
+            </div>
+            
             <section class="card__add__comment">
+
               <form id="comment-form" action="">
                 <div class="inline-fields">
                   <input class="add-comment" type="text" placeholder="Add Comment...">
@@ -43,6 +56,7 @@
                   <input id="submit-comment" class="submit" type="submit" value="post" >
                 </div>
               </form>
+              
             </section>
 
           </section>

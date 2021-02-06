@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE html>
+<html>
+
+  <%- include('../partials/_head/_head') %>
+
+  <body>
+    
+  <%- include('../partials/_mainNav/_navBar') %>
+
+    <!--  Place remaining index content for users here  -->
+  </body>
+
+  <header class="container">
+    <h2><p> <%= foundRecipe.recipeName %></p></h2>
+  </header>
+  
+    <div class="container">
+
+       <div class="recipe">
+            <div class="row recipe__stats">
+                <div class="recipe__image">
+                    <img src="<%= foundRecipe.img %> " alt="">
+                </div>
+                <div class="container">
+                    <h2>BEER STATS</h2>
+                    <h2><%= foundRecipe.recipeName %></h2>
+                <p> <%= foundRecipe.style %></p>
+                <label>Gallons</label>
+                <p> <%= foundRecipe.batchSize %></p>
+                <p> <%= foundRecipe.ABV %></p>
+
+                <p> <%= foundRecipe.SRM %></p>
+                <label>All Grain or Extract:</label>
+                <p> <%= foundRecipe.method %></p>
+                </div>
+            </div>
+            <div class="row recipe__description">
+                    <h2>DESCRIPTION</h2>
+                <p> <%= foundRecipe.caption %></p>
+            </div>
+            <div class="row recipe__ferments">
+                    <h2>GRAIN BILL</h2>
+                <p> <%= foundRecipe.grainBill %></p>
+            </div>
+            <div class="row recipe__hops">
+                    <h2>HOP SCHEDULE</h2>
+                <p> <%= foundRecipe.hopSchedule %></p>   
+            </div>
+            <div class="row recipe__other">
+                    <h2>OTHER INGREDIENTS</h2>
+                <p> <%= foundRecipe.otherIngredients %></p>
+            </div>
+        </div>
+
+    </div>
+  
+  </div>
+
+  <div>
+    <a href="/users" action="DELETE">DELETE POST</a>
+  </div>
+</html>
+
+
+

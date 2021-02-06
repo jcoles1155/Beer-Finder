@@ -40,6 +40,13 @@ function newRecipe( req, res, next ) {
       img: req.body.img,
       caption: req.body.caption,
       user: userId,
+      name: req.body.recipeName,
+      style: req.body.style,
+      method: req.body.method,
+      batchSize: req.body.batchSize,
+      ABV: req.body.ABV,
+      SRM: req.body.SRM,
+      yeast: req.body.yeast,
     };
 
     console.log(newRecipe);
@@ -58,15 +65,24 @@ function newRecipe( req, res, next ) {
         return res.render( 'users', { recipes: foundUser.recipes } );
       });
       console.log(req.body);
-      /* req.user.recipes.save().then(recipe => {
-        recipe === newRecipe;
-      }) */
     });
     console.log(req.user.recipes);
   }
 
 
-
+  function show( req, res, next ) {
+    
+    // console.log(req.user, 'current user');
+    const userId = req.session.passport.user;
+    Recipe.findById(req.params.id, function(err, foundRecipe){
+      if (err) return console.log(err)
+      console.log(foundRecipe);
+      res.render(`recipe/index`, {
+        foundRecipe,
+        userId,
+      })
+    })
+  };
 
 
 
@@ -80,6 +96,29 @@ function addRecipeForm(req, res, next) {
      });
   });
 }
+
+// // work with adonis
+// function delete( req, res, next ) {
+    
+//   // console.log(req.user, 'current user');
+//   const userId = req.session.passport.user;
+//   Recipe.findById(req.params.id, function(err, foundRecipe){
+//     if (err) return console.log(err)
+//     console.log(foundRecipe);
+//     foundRecipe.remove({ _id: req.body.id }, function(err) {
+//       if (err) return console.log(err)
+//     })
+//     Recipe.find({})
+//     .populate('user')
+//     .exec( ( err, recipes ) => {
+//         if ( err ) return console.log(err)
+//       const context = {
+//         recipes,
+//     }
+//       res.render('/users', context );
+//     })
+//   })
+// };
 
 // function navBar(req, res, next) {
 //   User.find({}, function(err, users) {
@@ -136,6 +175,6 @@ module.exports = {
     index,
     addRecipeForm,
     newRecipe,
-    // navBar,
+    show,
     newRecipeIndex,
 }

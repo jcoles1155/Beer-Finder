@@ -14,17 +14,16 @@
     <h2>Browse Recipes</h2>
   </header>
 
- 
+  <%- include('../partials/_carousel/_carousel') %>
 
-  <section class="main__posts">
     <nav>
       <a href="#">Browse Recipes</a>
     </nav>
-        
-    <%- include('../partials/_showRecipes/_showRecipes', {recipes}) %>
+    
+    <div class="main__posts">
+          <%- include('../partials/_showRecipes/_showRecipes', {recipes}) %>
+    </div>
   
-
-
-  </section>
+  </div>
 
 </html>
