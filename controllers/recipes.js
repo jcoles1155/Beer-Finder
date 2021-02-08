@@ -77,7 +77,7 @@ function newRecipe( req, res, next ) {
     Recipe.findById(req.params.id, function(err, foundRecipe){
       if (err) return console.log(err)
       console.log(foundRecipe);
-      res.render(`recipe/index`, {
+      res.render(`recipes/show`, {
         foundRecipe,
         userId,
       })
@@ -121,11 +121,25 @@ function editRecipeIndex(req, res, next) {
     Recipe.findById(req.params.id, function(err, foundRecipe){
       if (err) return console.log(err)
       console.log(foundRecipe);
-      res.render(`recipe/edit`, {
+      res.render(`recipes/edit`, {
         foundRecipe,
         userId,
       })
     })
+}
+
+function editRecipe(req, res) {
+  
+  Recipe.findByIdAndUpdate(req.params.id, {$set:req.body}, {new: true}, function(err, foundRecipe) {
+    const userId = req.session.passport.user;
+    if (err) return console.log(err)
+    console.log(foundRecipe);
+    res.render('recipes/show', {
+      foundRecipe,
+      userId,
+    })
+  } )
+
 }
 
 // function navBar(req, res, next) {
@@ -187,4 +201,5 @@ module.exports = {
     newRecipeIndex,
     deleteRecipe,
     editRecipeIndex,
+    editRecipe,
 }
