@@ -10,7 +10,7 @@ router.post('/new', isLoggedIn, recipesCtrl.newRecipe );
 router.get( '/new', isLoggedIn, recipesCtrl.newRecipeIndex );
 router.get( '/:id', isLoggedIn, recipesCtrl.show);
 router.get( '/:id/edit', isLoggedIn, recipesCtrl.editRecipeIndex)
-// router.post( '/:id/edit', isLoggedIn, recipesCtrl.editRecipe);
+router.post( '/:id', isLoggedIn, recipesCtrl.editRecipe);
 router.delete( '/:id', isLoggedIn, recipesCtrl.deleteRecipe);
 
 
