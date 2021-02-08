@@ -129,6 +129,7 @@ function editRecipeIndex(req, res, next) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function editRecipe(req, res, next) {
   const userId = req.session.passport.user;
 
@@ -162,6 +163,8 @@ function editRecipe(req, res, next) {
     
 };
 =======
+=======
+>>>>>>> main
 function editRecipe(req, res) {
   
   Recipe.findByIdAndUpdate(req.params.id, {$set:req.body}, {new: true}, function(err, foundRecipe) {
@@ -175,6 +178,9 @@ function editRecipe(req, res) {
   } )
 
 }
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
 
 // function navBar(req, res, next) {
