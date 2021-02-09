@@ -1,7 +1,7 @@
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 
-
+// presentational for browsing
 
 const index = ( req, res ) => {
 
@@ -16,9 +16,6 @@ const index = ( req, res ) => {
     })
 }
 
-// presentational for browsing
-
-
 
 // presentational for new recipe
 
@@ -31,6 +28,8 @@ function newRecipeIndex(req, res, next) {
      });
   });
 }
+
+// create new recipe 
 
 function newRecipe( req, res, next ) {
     console.log(req.body);
@@ -97,7 +96,7 @@ function addRecipeForm(req, res, next) {
   });
 }
 
-// work with adonis
+  
 function deleteRecipe( req, res, next ) {
     
   // console.log(req.user, 'current user');
@@ -141,56 +140,6 @@ function editRecipe(req, res) {
   } )
 
 }
-
-// function navBar(req, res, next) {
-//   User.find({}, function(err, users) {
-//     res.render('partials/_mainNav/_navBar', { 
-//       users,
-//       user: req.user,
-//       recipe: req.user.recipes,
-//      });
-//   });
-// }
-
-
-
-
-// needs more work with tosin
-// const showList = ( req, res ) => {
-//   const _id = req.params.userId
-  
-//   User.findById( _id )
-//     .populate('recipes')
-//     .exec((err, foundProfile) => {
-//       if (err) return res.status(500).json({
-//         status: 500,
-//         data: foundProfile,
-//         error: [{ message: 'Something went wrong. Please try again '}],
-//       });
-
-//       return res.render( 'users/index', {user: foundProfile} );
-//     });
-// };
-
-
-  /* function addRecipe(req, res) {
-  req.user.recipe.push(req.body);
-   req.user.save(function(err) {
-     res.redirect('/users');
-   });
-}
-
-function delRecipe(req, res) {
-  // DEBUGGING DELETE
-  /* console.log(req.params.id)
-  console.log(req.user.facts);
-  console.log(req.user.facts[req.params.id]); 
-  req.user.recipes.splice(req.params.id, 1)
-  req.user.save(function(err) {
-    if (err) return res.send("ERROR");
-    res.redirect('/recipes');
-  })
-} */
 
 
 module.exports = {
