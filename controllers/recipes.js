@@ -150,14 +150,7 @@ function editRecipe(req, res, next) {
           foundRecipe,
           userId,
     }));
-  // Recipe.findById(req.params.id, function(err, foundRecipe){
-  //   if (err) return console.log(err)
-  //   console.log(foundRecipe);
-  //   foundRecipe.updateOne(newRecipe, 
-  //     res.render(`recipe/index`, {
-  //     foundRecipe,
-  //     userId,
-  //   }));
+ 
     
 };
 
